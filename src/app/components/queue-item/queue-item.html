@@ -1,0 +1,42 @@
+<div
+  class="queue-item"
+  [class.queue-item--in_queue]="product().status === 'in_queue'"
+  [class.queue-item--checked]="product().status === 'checked'"
+  [class.queue-item--rejected]="product().status === 'rejected'"
+>
+  <div class="queue-item__head">
+    <span class="queue-item__id">{{ product().id }}</span>
+    <span class="queue-item__time" title="Время поступления">
+      {{ formatTime(product().createdAt) }}
+    </span>
+    <button
+      class="queue-item__remove"
+      type="button"
+      (click)="onRemove()"
+      [attr.aria-label]="'Удалить продукт ' + product().id"
+      title="Удалить продукт из очереди"
+    >
+      ✕
+    </button>
+  </div>
+
+  <div class="queue-item__meta">
+    <span class="queue-item__meta-label">Поступил</span>
+    <span class="queue-item__meta-value">{{ formatTime(product().createdAt) }}</span>
+  </div>
+
+  <label class="queue-item__status">
+    <span class="queue-item__status-label">Статус</span>
+    <select
+      class="queue-item__select"
+      (change)="onStatusChange($any($event).target.value)"
+      [attr.aria-label]="'Статус продукта ' + product().id"
+    >
+      @for (status of statuses; track status) {
+        <option [value]="status" [selected]="product().status === status">
+          {{ statusLabels[status] }}
+        </option>
+      }
+    </select>
+  </label>
+</div>

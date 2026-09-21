@@ -1,0 +1,103 @@
+:root {
+  /* Цветовая схема */
+  --bg: #0c1220;
+  --surface: #131c2c;
+  --surface-2: #1a2537;
+  --surface-3: #22304a;
+  --border: #2a3a55;
+  --border-soft: #1f2c42;
+  --text: #e8eef8;
+  --text-dim: #93a7c4;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --ok: #34d399;
+  --danger: #f87171;
+  --warn: #fbbf24;
+
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(2, 6, 16, 0.45);
+  --font-sans: 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(56, 189, 248, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(245, 158, 11, 0.06), transparent 60%), var(--bg);
+}
+
+/* ---------- Переиспользуемые элементы ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font: 600 14px var(--font-sans);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    transform 0.1s;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: var(--surface-3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(180deg, #2ea9e0, #1f87c0);
+  border-color: transparent;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(180deg, #38b9f2, #2697d4);
+    border-color: transparent;
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-dim);
+  font: 500 12px var(--font-mono);
+}

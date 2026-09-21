@@ -1,0 +1,29 @@
+<form class="product-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <header class="product-form__header">
+    <h3 class="product-form__title">Добавить продукт</h3>
+    <p class="product-form__note">
+      Продукт встанет в конец очереди — у датчика входа. ID сгенерируется автоматически (P-001,
+      P-002, …) либо укажите свой.
+    </p>
+  </header>
+
+  <div class="product-form__field">
+    <label class="product-form__label" for="product-id">
+      ID продукта <span class="product-form__optional">необязательно</span>
+    </label>
+    <input
+      id="product-id"
+      class="product-form__input"
+      type="text"
+      formControlName="id"
+      placeholder="например, P-1024"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    @if (idError && (submitted() || form.controls.id.touched)) {
+      <p class="product-form__error">{{ idError }}</p>
+    }
+  </div>
+
+  <button class="btn btn--primary product-form__submit" type="submit">+ Добавить продукт</button>
+</form>

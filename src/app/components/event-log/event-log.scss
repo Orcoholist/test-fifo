@@ -1,0 +1,130 @@
+.event-log {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.event-log__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.event-log__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.event-log__count {
+  font: 500 11px var(--font-mono);
+  color: var(--text-dim);
+}
+
+.event-log__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-log__clear {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+.event-log__clear--confirming {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(248, 113, 113, 0.12);
+
+  &:hover:not(:disabled) {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: rgba(248, 113, 113, 0.2);
+  }
+}
+
+.event-log__list {
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.event-log__item {
+  display: grid;
+  grid-template-columns: 58px 92px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--border);
+  font-size: 12px;
+
+  &--add {
+    border-left-color: var(--accent);
+  }
+
+  &--status_change {
+    border-left-color: var(--warn);
+  }
+
+  &--remove {
+    border-left-color: var(--danger);
+  }
+
+  &--system {
+    border-left-color: var(--text-dim);
+  }
+}
+
+.event-log__time {
+  font: 500 11px var(--font-mono);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.event-log__badge {
+  font: 700 10px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.event-log__item--add .event-log__badge {
+  color: var(--accent);
+}
+
+.event-log__item--status_change .event-log__badge {
+  color: var(--warn);
+}
+
+.event-log__item--remove .event-log__badge {
+  color: var(--danger);
+}
+
+.event-log__message {
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.event-log__empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}

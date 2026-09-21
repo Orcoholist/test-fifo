@@ -1,0 +1,25 @@
+<div class="app">
+  <header class="app__header">
+    <div class="app__brand">
+      <div class="app__logo" aria-hidden="true">🏭</div>
+      <div>
+        <h1 class="app__title">Линия</h1>
+        <p class="app__subtitle">Движение продуктов от датчика входа до датчика отбраковки</p>
+      </div>
+    </div>
+
+    <div class="app__controls">
+      <span class="chip">Такт {{ tick() }}</span>
+      <span class="chip">В очереди: {{ itemsCount() }}</span>
+      <button class="btn btn--ghost" type="button" (click)="reset()">Сбросить</button>
+    </div>
+  </header>
+
+  <main class="app__main">
+    <app-queue-line />
+    <div class="app__grid">
+      <app-add-product-form />
+      <app-event-log />
+    </div>
+  </main>
+</div>

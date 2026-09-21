@@ -1,0 +1,112 @@
+.queue-item {
+  --status-color: var(--accent);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 148px;
+  margin: 10px 6px;
+  padding: 12px 12px 10px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--status-color) 45%, var(--border));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--status-color) 9%, var(--surface-2)),
+    var(--surface-2)
+  );
+  box-shadow: var(--shadow);
+  user-select: none;
+
+  &--checked {
+    --status-color: var(--ok);
+  }
+
+  &--rejected {
+    --status-color: var(--danger);
+  }
+}
+
+.queue-item__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.queue-item__id {
+  font: 700 15px var(--font-mono);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.queue-item__time {
+  margin-left: auto;
+  font: 500 10px var(--font-mono);
+  color: var(--text-dim);
+}
+
+.queue-item__remove {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: rgba(248, 113, 113, 0.15);
+    color: var(--danger);
+  }
+}
+
+.queue-item__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font: 500 11px var(--font-mono);
+}
+
+.queue-item__meta-label {
+  color: var(--text-dim);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.queue-item__status {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.queue-item__status-label {
+  font: 600 10px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.queue-item__select {
+  width: 100%;
+  padding: 7px 8px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--status-color) 40%, var(--border));
+  background: var(--surface);
+  color: var(--text);
+  font: 600 12px var(--font-mono);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--status-color);
+    outline-offset: 1px;
+  }
+}

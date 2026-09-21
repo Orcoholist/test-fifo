@@ -1,0 +1,54 @@
+<section class="queue-line">
+  <header class="queue-line__header">
+    <div class="sensor">
+      <span class="sensor__dot sensor__dot--entry" aria-hidden="true"></span>
+      Датчик входа
+    </div>
+    <div class="queue-line__stats">
+      <span class="chip">Такт {{ tick() }}</span>
+      <span class="chip">Продуктов в очереди: {{ itemsCount() }}</span>
+    </div>
+    <div class="sensor">
+      Датчик отбраковки
+      <span class="sensor__dot sensor__dot--reject" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <div class="queue-line__viewport">
+    <div class="queue-line__track" [style.--slot-count]="itemsCount()">
+      <div
+        class="queue-line__marker queue-line__marker--entry"
+        [class.queue-line__marker--hidden]="itemsCount() === 0"
+        aria-hidden="true"
+      ></div>
+      <div class="queue-line__marker queue-line__marker--reject" aria-hidden="true"></div>
+
+      @for (product of products(); track product.id; let i = $index) {
+        <app-queue-item
+          class="queue-line__item"
+          [product]="product"
+          [style.--slot-index]="i"
+          animate.enter="item-enter"
+          animate.leave="item-leave"
+          (statusChange)="onStatusChange(product.id, $event)"
+          (remove)="onRemove($event)"
+        />
+      } @empty {
+        <div class="queue-line__empty">
+          Линия пуста. Добавьте продукт через форму — он встанет у датчика входа.
+        </div>
+      }
+    </div>
+  </div>
+
+  <footer class="queue-line__footer">
+    <button
+      class="btn btn--primary"
+      type="button"
+      (click)="nextTick()"
+      [disabled]="itemsCount() === 0"
+    >
+      ⏭ Следующий такт
+    </button>
+  </footer>
+</section>
